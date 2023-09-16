@@ -17,6 +17,12 @@ pipeline {
       steps {
         sh 'npm install'
       }
+    }    
+    stage('Run Tests') {
+      // Test Gallery app
+      steps {
+        sh 'npm test'
+      }
     }  
     stage('Deploy to Render') {
       steps {
@@ -25,4 +31,19 @@ pipeline {
       }
     }
   }
+  post {
+        failure {
+            // Send a Slack notification on build failure
+            slackSend(channel: '#playground', color: 'danger', message: 'Gallery project build failed! Check the Jenkins job for details.')
+
+            mail to: "simon.okello@student.moringaschool.com",
+            subject: "Build # ${env.BUILD_NUMBER} Failed",
+            body: "Build #${env.BUILD_NUMBER} failed. Build link: ${env.BUILD_URL}"
+        }
+        success {
+            // Send a Slack notification on build success
+            slackSend(channel: '#playground', color: 'good', message: 'Gallery project has been deployed on Render!. Visit: https://gallery-tnbj.onrender.com')
+            
+        }
+    }
 }
