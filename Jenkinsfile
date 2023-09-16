@@ -21,7 +21,7 @@ pipeline {
     stage('Deploy to Render') {
       steps {
         // Deploy to render.com
-        sh curl 'https://api.render.com/deploy/srv-ck2p456ru70s73949ti0?key=nFak1ZFxXnA'
+        sh 'curl --request POST --url https://api.render.com/deploy/srv-ck2p456ru70s73949ti0?key=nFak1ZFxXnA'
       }
     }
   }
