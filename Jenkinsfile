@@ -34,7 +34,7 @@ pipeline {
   post {
         failure {
             // Send a Slack notification on build failure
-            slackSend(channel: '#playground', color: 'danger', message: "Gallery project build failed! Check the Jenkins job for details. Build #${env.BUILD_NUMBER} Build link: ${env.BUILD_URL} ")
+            slackSend(channel: '#simon_ip1', color: 'danger', message: "Gallery project build failed! Check the Jenkins job for details. Build #${env.BUILD_NUMBER} Build link: ${env.BUILD_URL} ")
 
             mail to: "simon.okello@student.moringaschool.com",
             subject: "Build #${env.BUILD_NUMBER} Failed",
@@ -42,7 +42,7 @@ pipeline {
         }
         success {
             // Send a Slack notification on build success
-            slackSend(channel: '#playground', color: 'good', message: "Hi @Samuel Kadima SimonOkello's IP 1 is complete. Build #${env.BUILD_NUMBER} was successful. Gallery project has been deployed on Render!. Visit: https://gallery-tnbj.onrender.com")
+            slackSend(channel: '#simon_ip1', color: 'good', message: "Hi @Samuel Kadima SimonOkello's IP 1 is complete. Build #${env.BUILD_NUMBER} was successful. Gallery project has been deployed on Render!. Visit: https://gallery-tnbj.onrender.com")
             
         }
     }
